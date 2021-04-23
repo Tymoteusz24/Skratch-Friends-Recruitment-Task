@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B6A1A464166A2840F0ACA2E /* Pods_Skratch_Friends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BF7E4DDA9C2BDC65A7B54A /* Pods_Skratch_Friends.framework */; };
 		708002622632E22200EC446E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002612632E22200EC446E /* AppDelegate.swift */; };
 		708002642632E22200EC446E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002632632E22200EC446E /* SceneDelegate.swift */; };
 		708002662632E22200EC446E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002652632E22200EC446E /* ViewController.swift */; };
@@ -15,6 +16,8 @@
 		7080026E2632E22400EC446E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7080026C2632E22400EC446E /* LaunchScreen.storyboard */; };
 		708002792632E22400EC446E /* Skratch_FriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002782632E22400EC446E /* Skratch_FriendsTests.swift */; };
 		708002842632E22400EC446E /* Skratch_FriendsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002832632E22400EC446E /* Skratch_FriendsUITests.swift */; };
+		DDA6FC6C0D31A92339DD8B09 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC11002C3E17953BDD1045 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework */; };
+		F443820B02E07479AD7D0E01 /* Pods_Skratch_FriendsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175496EBE8740BFF3994C895 /* Pods_Skratch_FriendsTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		175496EBE8740BFF3994C895 /* Pods_Skratch_FriendsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Skratch_FriendsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45C511E1EE4688E258BAC7D2 /* Pods-Skratch FriendsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch FriendsTests.debug.xcconfig"; path = "Target Support Files/Pods-Skratch FriendsTests/Pods-Skratch FriendsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DA162FFCF865D5F081FAFC6 /* Pods-Skratch Friends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends.release.xcconfig"; path = "Target Support Files/Pods-Skratch Friends/Pods-Skratch Friends.release.xcconfig"; sourceTree = "<group>"; };
 		7080025E2632E22200EC446E /* Skratch Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skratch Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		708002612632E22200EC446E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		708002632632E22200EC446E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		7080027F2632E22400EC446E /* Skratch FriendsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skratch FriendsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		708002832632E22400EC446E /* Skratch_FriendsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skratch_FriendsUITests.swift; sourceTree = "<group>"; };
 		708002852632E22400EC446E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78BF20D225258083AFDED739 /* Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig"; path = "Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A5BF7E4DDA9C2BDC65A7B54A /* Pods_Skratch_Friends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Skratch_Friends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9F5E4919DD90B15D4F3332 /* Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CA7F3E9074D114EF58A70A4E /* Pods-Skratch FriendsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch FriendsTests.release.xcconfig"; path = "Target Support Files/Pods-Skratch FriendsTests/Pods-Skratch FriendsTests.release.xcconfig"; sourceTree = "<group>"; };
+		D2CC11002C3E17953BDD1045 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Skratch_Friends_Skratch_FriendsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D50EA0A2739B9110732284E3 /* Pods-Skratch Friends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends.debug.xcconfig"; path = "Target Support Files/Pods-Skratch Friends/Pods-Skratch Friends.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6A1A464166A2840F0ACA2E /* Pods_Skratch_Friends.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F443820B02E07479AD7D0E01 /* Pods_Skratch_FriendsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA6FC6C0D31A92339DD8B09 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		360E234075A8660B3641F688 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D50EA0A2739B9110732284E3 /* Pods-Skratch Friends.debug.xcconfig */,
+				6DA162FFCF865D5F081FAFC6 /* Pods-Skratch Friends.release.xcconfig */,
+				BB9F5E4919DD90B15D4F3332 /* Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig */,
+				78BF20D225258083AFDED739 /* Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig */,
+				45C511E1EE4688E258BAC7D2 /* Pods-Skratch FriendsTests.debug.xcconfig */,
+				CA7F3E9074D114EF58A70A4E /* Pods-Skratch FriendsTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		708002552632E22200EC446E = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +111,8 @@
 				708002772632E22400EC446E /* Skratch FriendsTests */,
 				708002822632E22400EC446E /* Skratch FriendsUITests */,
 				7080025F2632E22200EC446E /* Products */,
+				360E234075A8660B3641F688 /* Pods */,
+				D56EF18128A6DBB1402BF502 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +158,16 @@
 			path = "Skratch FriendsUITests";
 			sourceTree = "<group>";
 		};
+		D56EF18128A6DBB1402BF502 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5BF7E4DDA9C2BDC65A7B54A /* Pods_Skratch_Friends.framework */,
+				D2CC11002C3E17953BDD1045 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework */,
+				175496EBE8740BFF3994C895 /* Pods_Skratch_FriendsTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 708002882632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch Friends" */;
 			buildPhases = (
+				2811AC8BFB48BD0CC35A25DA /* [CP] Check Pods Manifest.lock */,
 				7080025A2632E22200EC446E /* Sources */,
 				7080025B2632E22200EC446E /* Frameworks */,
 				7080025C2632E22200EC446E /* Resources */,
+				818039318F49E99F23539DA6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7080028B2632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch FriendsTests" */;
 			buildPhases = (
+				EE2DA27AD8665FBBD7053939 /* [CP] Check Pods Manifest.lock */,
 				708002702632E22400EC446E /* Sources */,
 				708002712632E22400EC446E /* Frameworks */,
 				708002722632E22400EC446E /* Resources */,
@@ -170,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7080028E2632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch FriendsUITests" */;
 			buildPhases = (
+				2A0FA93FEC6009DCB50DA390 /* [CP] Check Pods Manifest.lock */,
 				7080027B2632E22400EC446E /* Sources */,
 				7080027C2632E22400EC446E /* Frameworks */,
 				7080027D2632E22400EC446E /* Resources */,
+				87AF0E9DB705B5A30491D2B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,6 +297,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2811AC8BFB48BD0CC35A25DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Skratch Friends-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A0FA93FEC6009DCB50DA390 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Skratch Friends-Skratch FriendsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		818039318F49E99F23539DA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Skratch Friends/Pods-Skratch Friends-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Skratch Friends/Pods-Skratch Friends-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Skratch Friends/Pods-Skratch Friends-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87AF0E9DB705B5A30491D2B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE2DA27AD8665FBBD7053939 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Skratch FriendsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7080025A2632E22200EC446E /* Sources */ = {
@@ -366,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +569,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -433,6 +581,7 @@
 		};
 		708002892632E22400EC446E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D50EA0A2739B9110732284E3 /* Pods-Skratch Friends.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -446,12 +595,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-Friends";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		7080028A2632E22400EC446E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA162FFCF865D5F081FAFC6 /* Pods-Skratch Friends.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -465,12 +615,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-Friends";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		7080028C2632E22400EC446E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45C511E1EE4688E258BAC7D2 /* Pods-Skratch FriendsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,6 +644,7 @@
 		};
 		7080028D2632E22400EC446E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7F3E9074D114EF58A70A4E /* Pods-Skratch FriendsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +667,7 @@
 		};
 		7080028F2632E22400EC446E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB9F5E4919DD90B15D4F3332 /* Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +688,7 @@
 		};
 		708002902632E22400EC446E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BF20D225258083AFDED739 /* Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
