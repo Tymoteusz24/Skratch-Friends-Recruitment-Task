@@ -10,12 +10,13 @@
 		3B6A1A464166A2840F0ACA2E /* Pods_Skratch_Friends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BF7E4DDA9C2BDC65A7B54A /* Pods_Skratch_Friends.framework */; };
 		708002622632E22200EC446E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002612632E22200EC446E /* AppDelegate.swift */; };
 		708002642632E22200EC446E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002632632E22200EC446E /* SceneDelegate.swift */; };
-		708002662632E22200EC446E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002652632E22200EC446E /* ViewController.swift */; };
-		708002692632E22200EC446E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708002672632E22200EC446E /* Main.storyboard */; };
 		7080026B2632E22400EC446E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7080026A2632E22400EC446E /* Assets.xcassets */; };
 		7080026E2632E22400EC446E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7080026C2632E22400EC446E /* LaunchScreen.storyboard */; };
 		708002792632E22400EC446E /* Skratch_FriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002782632E22400EC446E /* Skratch_FriendsTests.swift */; };
 		708002842632E22400EC446E /* Skratch_FriendsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002832632E22400EC446E /* Skratch_FriendsUITests.swift */; };
+		70FFE6142633555000745723 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE6132633555000745723 /* MapViewController.swift */; };
+		70FFE61D2633559300745723 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE61C2633559300745723 /* MapViewModel.swift */; };
+		70FFE6372633640000745723 /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE6362633640000745723 /* C.swift */; };
 		DDA6FC6C0D31A92339DD8B09 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC11002C3E17953BDD1045 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework */; };
 		F443820B02E07479AD7D0E01 /* Pods_Skratch_FriendsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175496EBE8740BFF3994C895 /* Pods_Skratch_FriendsTests.framework */; };
 /* End PBXBuildFile section */
@@ -44,8 +45,6 @@
 		7080025E2632E22200EC446E /* Skratch Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skratch Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		708002612632E22200EC446E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		708002632632E22200EC446E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		708002652632E22200EC446E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		708002682632E22200EC446E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7080026A2632E22400EC446E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7080026D2632E22400EC446E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7080026F2632E22400EC446E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +54,9 @@
 		7080027F2632E22400EC446E /* Skratch FriendsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skratch FriendsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		708002832632E22400EC446E /* Skratch_FriendsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skratch_FriendsUITests.swift; sourceTree = "<group>"; };
 		708002852632E22400EC446E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70FFE6132633555000745723 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		70FFE61C2633559300745723 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		70FFE6362633640000745723 /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
 		78BF20D225258083AFDED739 /* Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig"; path = "Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A5BF7E4DDA9C2BDC65A7B54A /* Pods_Skratch_Friends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Skratch_Friends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9F5E4919DD90B15D4F3332 /* Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,10 +131,12 @@
 		708002602632E22200EC446E /* Skratch Friends */ = {
 			isa = PBXGroup;
 			children = (
+				70FFE63E2633669200745723 /* Views */,
+				70FFE635263363ED00745723 /* Resources */,
+				70FFE61B2633558600745723 /* ViewModels */,
+				70FFE6122633553700745723 /* Controllers */,
 				708002612632E22200EC446E /* AppDelegate.swift */,
 				708002632632E22200EC446E /* SceneDelegate.swift */,
-				708002652632E22200EC446E /* ViewController.swift */,
-				708002672632E22200EC446E /* Main.storyboard */,
 				7080026A2632E22400EC446E /* Assets.xcassets */,
 				7080026C2632E22400EC446E /* LaunchScreen.storyboard */,
 				7080026F2632E22400EC446E /* Info.plist */,
@@ -156,6 +160,37 @@
 				708002852632E22400EC446E /* Info.plist */,
 			);
 			path = "Skratch FriendsUITests";
+			sourceTree = "<group>";
+		};
+		70FFE6122633553700745723 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				70FFE6132633555000745723 /* MapViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		70FFE61B2633558600745723 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				70FFE61C2633559300745723 /* MapViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		70FFE635263363ED00745723 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				70FFE6362633640000745723 /* C.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		70FFE63E2633669200745723 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D56EF18128A6DBB1402BF502 /* Frameworks */ = {
@@ -278,7 +313,6 @@
 			files = (
 				7080026E2632E22400EC446E /* LaunchScreen.storyboard in Resources */,
 				7080026B2632E22400EC446E /* Assets.xcassets in Resources */,
-				708002692632E22200EC446E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,9 +440,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				708002662632E22200EC446E /* ViewController.swift in Sources */,
+				70FFE61D2633559300745723 /* MapViewModel.swift in Sources */,
 				708002622632E22200EC446E /* AppDelegate.swift in Sources */,
 				708002642632E22200EC446E /* SceneDelegate.swift in Sources */,
+				70FFE6372633640000745723 /* C.swift in Sources */,
+				70FFE6142633555000745723 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,14 +480,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		708002672632E22200EC446E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				708002682632E22200EC446E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7080026C2632E22400EC446E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
