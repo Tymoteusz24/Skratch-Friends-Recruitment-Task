@@ -6,6 +6,7 @@ target 'Skratch Friends' do
   use_frameworks!
 
   pod 'Mapbox-iOS-SDK', '~> 6.3.0'
+ pod 'BetterSegmentedControl', '~> 2.0'
 
   target 'Skratch FriendsTests' do
     inherit! :search_paths

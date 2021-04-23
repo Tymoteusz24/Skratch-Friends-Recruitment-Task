@@ -1,20 +1,24 @@
 PODS:
+  - BetterSegmentedControl (2.0.1)
   - Mapbox-iOS-SDK (6.3.0):
     - MapboxMobileEvents (~> 0.10.4)
   - MapboxMobileEvents (0.10.8)
 
 DEPENDENCIES:
+  - BetterSegmentedControl (~> 2.0)
   - Mapbox-iOS-SDK (~> 6.3.0)
 
 SPEC REPOS:
   trunk:
+    - BetterSegmentedControl
     - Mapbox-iOS-SDK
     - MapboxMobileEvents
 
 SPEC CHECKSUMS:
+  BetterSegmentedControl: 09607b27861d49cbce48b7673b74f9150a3d371a
   Mapbox-iOS-SDK: 2563ed87ead6ec08f1c2090873977b8a7be335a8
   MapboxMobileEvents: 36ff53b135aac486eed94b61f813c7967a0c2c6f
 
-PODFILE CHECKSUM: f5fb0c58220a9128090eb2a40560e1566e118131
+PODFILE CHECKSUM: 1837e1a0eac01f262e2308b4c77658945533e654
 
 COCOAPODS: 1.10.1
