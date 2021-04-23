@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		708002622632E22200EC446E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002612632E22200EC446E /* AppDelegate.swift */; };
+		708002642632E22200EC446E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002632632E22200EC446E /* SceneDelegate.swift */; };
+		708002662632E22200EC446E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002652632E22200EC446E /* ViewController.swift */; };
+		708002692632E22200EC446E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708002672632E22200EC446E /* Main.storyboard */; };
+		7080026B2632E22400EC446E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7080026A2632E22400EC446E /* Assets.xcassets */; };
+		7080026E2632E22400EC446E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7080026C2632E22400EC446E /* LaunchScreen.storyboard */; };
+		708002792632E22400EC446E /* Skratch_FriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002782632E22400EC446E /* Skratch_FriendsTests.swift */; };
+		708002842632E22400EC446E /* Skratch_FriendsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002832632E22400EC446E /* Skratch_FriendsUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		708002752632E22400EC446E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 708002562632E22200EC446E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7080025D2632E22200EC446E;
+			remoteInfo = "Skratch Friends";
+		};
+		708002802632E22400EC446E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 708002562632E22200EC446E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7080025D2632E22200EC446E;
+			remoteInfo = "Skratch Friends";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7080025E2632E22200EC446E /* Skratch Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skratch Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		708002612632E22200EC446E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		708002632632E22200EC446E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		708002652632E22200EC446E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		708002682632E22200EC446E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7080026A2632E22400EC446E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7080026D2632E22400EC446E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7080026F2632E22400EC446E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		708002742632E22400EC446E /* Skratch FriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skratch FriendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		708002782632E22400EC446E /* Skratch_FriendsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skratch_FriendsTests.swift; sourceTree = "<group>"; };
+		7080027A2632E22400EC446E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7080027F2632E22400EC446E /* Skratch FriendsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skratch FriendsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		708002832632E22400EC446E /* Skratch_FriendsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skratch_FriendsUITests.swift; sourceTree = "<group>"; };
+		708002852632E22400EC446E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7080025B2632E22200EC446E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		708002712632E22400EC446E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7080027C2632E22400EC446E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		708002552632E22200EC446E = {
+			isa = PBXGroup;
+			children = (
+				708002602632E22200EC446E /* Skratch Friends */,
+				708002772632E22400EC446E /* Skratch FriendsTests */,
+				708002822632E22400EC446E /* Skratch FriendsUITests */,
+				7080025F2632E22200EC446E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7080025F2632E22200EC446E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7080025E2632E22200EC446E /* Skratch Friends.app */,
+				708002742632E22400EC446E /* Skratch FriendsTests.xctest */,
+				7080027F2632E22400EC446E /* Skratch FriendsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		708002602632E22200EC446E /* Skratch Friends */ = {
+			isa = PBXGroup;
+			children = (
+				708002612632E22200EC446E /* AppDelegate.swift */,
+				708002632632E22200EC446E /* SceneDelegate.swift */,
+				708002652632E22200EC446E /* ViewController.swift */,
+				708002672632E22200EC446E /* Main.storyboard */,
+				7080026A2632E22400EC446E /* Assets.xcassets */,
+				7080026C2632E22400EC446E /* LaunchScreen.storyboard */,
+				7080026F2632E22400EC446E /* Info.plist */,
+			);
+			path = "Skratch Friends";
+			sourceTree = "<group>";
+		};
+		708002772632E22400EC446E /* Skratch FriendsTests */ = {
+			isa = PBXGroup;
+			children = (
+				708002782632E22400EC446E /* Skratch_FriendsTests.swift */,
+				7080027A2632E22400EC446E /* Info.plist */,
+			);
+			path = "Skratch FriendsTests";
+			sourceTree = "<group>";
+		};
+		708002822632E22400EC446E /* Skratch FriendsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				708002832632E22400EC446E /* Skratch_FriendsUITests.swift */,
+				708002852632E22400EC446E /* Info.plist */,
+			);
+			path = "Skratch FriendsUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7080025D2632E22200EC446E /* Skratch Friends */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 708002882632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch Friends" */;
+			buildPhases = (
+				7080025A2632E22200EC446E /* Sources */,
+				7080025B2632E22200EC446E /* Frameworks */,
+				7080025C2632E22200EC446E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Skratch Friends";
+			productName = "Skratch Friends";
+			productReference = 7080025E2632E22200EC446E /* Skratch Friends.app */;
+			productType = "com.apple.product-type.application";
+		};
+		708002732632E22400EC446E /* Skratch FriendsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7080028B2632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch FriendsTests" */;
+			buildPhases = (
+				708002702632E22400EC446E /* Sources */,
+				708002712632E22400EC446E /* Frameworks */,
+				708002722632E22400EC446E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				708002762632E22400EC446E /* PBXTargetDependency */,
+			);
+			name = "Skratch FriendsTests";
+			productName = "Skratch FriendsTests";
+			productReference = 708002742632E22400EC446E /* Skratch FriendsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7080027E2632E22400EC446E /* Skratch FriendsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7080028E2632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch FriendsUITests" */;
+			buildPhases = (
+				7080027B2632E22400EC446E /* Sources */,
+				7080027C2632E22400EC446E /* Frameworks */,
+				7080027D2632E22400EC446E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				708002812632E22400EC446E /* PBXTargetDependency */,
+			);
+			name = "Skratch FriendsUITests";
+			productName = "Skratch FriendsUITests";
+			productReference = 7080027F2632E22400EC446E /* Skratch FriendsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		708002562632E22200EC446E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					7080025D2632E22200EC446E = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					708002732632E22400EC446E = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 7080025D2632E22200EC446E;
+					};
+					7080027E2632E22400EC446E = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 7080025D2632E22200EC446E;
+					};
+				};
+			};
+			buildConfigurationList = 708002592632E22200EC446E /* Build configuration list for PBXProject "Skratch Friends" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 708002552632E22200EC446E;
+			productRefGroup = 7080025F2632E22200EC446E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7080025D2632E22200EC446E /* Skratch Friends */,
+				708002732632E22400EC446E /* Skratch FriendsTests */,
+				7080027E2632E22400EC446E /* Skratch FriendsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7080025C2632E22200EC446E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7080026E2632E22400EC446E /* LaunchScreen.storyboard in Resources */,
+				7080026B2632E22400EC446E /* Assets.xcassets in Resources */,
+				708002692632E22200EC446E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		708002722632E22400EC446E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7080027D2632E22400EC446E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7080025A2632E22200EC446E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				708002662632E22200EC446E /* ViewController.swift in Sources */,
+				708002622632E22200EC446E /* AppDelegate.swift in Sources */,
+				708002642632E22200EC446E /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		708002702632E22400EC446E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				708002792632E22400EC446E /* Skratch_FriendsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7080027B2632E22400EC446E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				708002842632E22400EC446E /* Skratch_FriendsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		708002762632E22400EC446E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7080025D2632E22200EC446E /* Skratch Friends */;
+			targetProxy = 708002752632E22400EC446E /* PBXContainerItemProxy */;
+		};
+		708002812632E22400EC446E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7080025D2632E22200EC446E /* Skratch Friends */;
+			targetProxy = 708002802632E22400EC446E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		708002672632E22200EC446E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				708002682632E22200EC446E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7080026C2632E22400EC446E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7080026D2632E22400EC446E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		708002862632E22400EC446E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		708002872632E22400EC446E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		708002892632E22400EC446E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QBFHB9J93K;
+				INFOPLIST_FILE = "Skratch Friends/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-Friends";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7080028A2632E22400EC446E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QBFHB9J93K;
+				INFOPLIST_FILE = "Skratch Friends/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-Friends";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7080028C2632E22400EC446E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QBFHB9J93K;
+				INFOPLIST_FILE = "Skratch FriendsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-FriendsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Skratch Friends.app/Skratch Friends";
+			};
+			name = Debug;
+		};
+		7080028D2632E22400EC446E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QBFHB9J93K;
+				INFOPLIST_FILE = "Skratch FriendsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-FriendsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Skratch Friends.app/Skratch Friends";
+			};
+			name = Release;
+		};
+		7080028F2632E22400EC446E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QBFHB9J93K;
+				INFOPLIST_FILE = "Skratch FriendsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-FriendsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Skratch Friends";
+			};
+			name = Debug;
+		};
+		708002902632E22400EC446E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QBFHB9J93K;
+				INFOPLIST_FILE = "Skratch FriendsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-FriendsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Skratch Friends";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		708002592632E22200EC446E /* Build configuration list for PBXProject "Skratch Friends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				708002862632E22400EC446E /* Debug */,
+				708002872632E22400EC446E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		708002882632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch Friends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				708002892632E22400EC446E /* Debug */,
+				7080028A2632E22400EC446E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7080028B2632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch FriendsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7080028C2632E22400EC446E /* Debug */,
+				7080028D2632E22400EC446E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7080028E2632E22400EC446E /* Build configuration list for PBXNativeTarget "Skratch FriendsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7080028F2632E22400EC446E /* Debug */,
+				708002902632E22400EC446E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 708002562632E22200EC446E /* Project object */;
+}
