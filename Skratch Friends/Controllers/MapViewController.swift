@@ -8,6 +8,7 @@
 import UIKit
 import Mapbox
 import BetterSegmentedControl
+import Combine
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
     
@@ -285,43 +286,11 @@ extension MapViewController {
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil, let customAnnotation = annotation as? UserAnnotationPoint {
             annotationView = CustomAnnotationView()
+            annotationView!.annotation = customAnnotation
             annotationView!.bounds = CGRect(x: 0, y: 0, width: 100, height: 90)
-            if let image = viewModel.imagesDict[customAnnotation.user.picture.large] {
-                annotationView!.backgroundColor = .clear
-                annotationView!.imageView = image
-                annotationView!.addSubview(annotationView!.imageView!)
-                
-                
-                let label = Annotationlabel(text: customAnnotation.user.name.first)
-                annotationView!.label = label
-                annotationView!.addSubview(label)
-                
-                
-                print("picture: get prefetched")
-                return annotationView
-            } else {
-                customAnnotation.getImage { [weak self] (result) in
-                    switch result {
-                    case .success(let image):
-                        DispatchQueue.main.async {
-                            annotationView!.backgroundColor = .clear
-                            annotationView!.imageView = image
-                            self?.viewModel.imagesDict[customAnnotation.user.picture.large] = image
-                            annotationView!.addSubview(annotationView!.imageView!)
-                            
-                            let label = Annotationlabel(text: customAnnotation.user.name.first)
-                            annotationView!.label = label
-                            annotationView!.addSubview(label)
-                            
-                            
-                        }
-                        
-                    case .failure(let error):
-                        print("error")
-                    }
-                }
-                return annotationView
-            }
+            annotationView!.getImage()
+            return annotationView
+            
         }
         
         return annotationView
@@ -341,6 +310,8 @@ class CustomAnnotationView: MGLAnnotationView {
     
     var label: Annotationlabel?
     
+    private var cancellable: AnyCancellable?
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -353,6 +324,7 @@ class CustomAnnotationView: MGLAnnotationView {
         label?.center = CGPoint(x: 50, y: 10)
         
         guard let _ = imageView, let _ = label else {return}
+        
         //self.layer.shadowPath = UIBezierPath(roundedRect: self.imageView!.frame, cornerRadius: self.imageView!.bounds.width/2).cgPath
         print("layoutet view with shadow ")
         layer.shadowRadius = 8
@@ -370,6 +342,39 @@ class CustomAnnotationView: MGLAnnotationView {
         animation.duration = 0.1
         layer.add(animation, forKey: "borderWidth")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellable?.cancel()
+        imageView = nil
+        label = nil
+    }
+    
+    func getImage() {
+        guard let userAnnotation = annotation as? UserAnnotationPoint else {return}
+        
+        guard let url = URL(string: userAnnotation.user.picture.medium) else {
+            return
+        }
+        cancellable = ImageLoader.shared.loadImage(from: url).sink { [unowned self] image in
+            let imageView = UIImageView(image: image?.withAlignmentRectInsets(UIEdgeInsets(top: -3, left: -3, bottom: -3,
+                                                                                          right: -3)))
+            imageView.bounds = CGRect(x: 0, y: 0, width: 60, height: 60)
+            imageView.layer.cornerRadius = 30
+            imageView.layer.masksToBounds = true
+            imageView.contentMode = .scaleAspectFit
+            
+            self.backgroundColor = .clear
+            self.imageView = imageView
+           
+            self.addSubview(self.imageView!)
+            
+            let label = Annotationlabel(text: userAnnotation.user.name.first)
+            self.label = label
+            self.addSubview(label)
+        }
+    }
+
 }
 
 extension UIView {
@@ -415,35 +420,6 @@ class UserAnnotationPoint: MGLPointAnnotation {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func getImage(completion: @escaping (Result< UIImageView, NetworkError>) -> Void) {
-        guard let url = URL(string: user.picture.large) else {
-            completion(.failure(.domainError))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard error == nil else {
-                
-                completion(.failure(.domainError))
-                return
-            }
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data!) {
-                    let imageView = UIImageView(image: image.withAlignmentRectInsets(UIEdgeInsets(top: -3, left: -3, bottom: -3,
-                                                                                                  right: -3)))
-                    imageView.bounds = CGRect(x: 0, y: 0, width: 60, height: 60)
-                    imageView.layer.cornerRadius = 30
-                    imageView.layer.masksToBounds = true
-                    imageView.contentMode = .scaleAspectFit
-                    completion(.success(imageView))
-                } else {
-                    completion(.failure(.decodingError))
-                }
-            }
-            
-        }.resume()
     }
 }
 class Annotationlabel: UILabel {

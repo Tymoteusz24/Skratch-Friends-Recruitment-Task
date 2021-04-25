@@ -19,6 +19,8 @@
 		70FFE6372633640000745723 /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE6362633640000745723 /* C.swift */; };
 		70FFE66126340D7A00745723 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE66026340D7A00745723 /* NetworkingManager.swift */; };
 		70FFE66A26340E2B00745723 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE66926340E2B00745723 /* User.swift */; };
+		70FFE7072635B21600745723 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE7062635B21600745723 /* ImageCache.swift */; };
+		70FFE70F2635B24B00745723 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FFE70E2635B24B00745723 /* ImageLoader.swift */; };
 		DDA6FC6C0D31A92339DD8B09 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC11002C3E17953BDD1045 /* Pods_Skratch_Friends_Skratch_FriendsUITests.framework */; };
 		F443820B02E07479AD7D0E01 /* Pods_Skratch_FriendsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175496EBE8740BFF3994C895 /* Pods_Skratch_FriendsTests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +64,8 @@
 		70FFE66026340D7A00745723 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		70FFE66926340E2B00745723 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		70FFE70226345C5A00745723 /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.otf"; sourceTree = "<group>"; };
+		70FFE7062635B21600745723 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		70FFE70E2635B24B00745723 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		78BF20D225258083AFDED739 /* Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig"; path = "Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A5BF7E4DDA9C2BDC65A7B54A /* Pods_Skratch_Friends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Skratch_Friends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9F5E4919DD90B15D4F3332 /* Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Skratch Friends-Skratch FriendsUITests/Pods-Skratch Friends-Skratch FriendsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				70FFE66026340D7A00745723 /* NetworkingManager.swift */,
+				70FFE7062635B21600745723 /* ImageCache.swift */,
+				70FFE70E2635B24B00745723 /* ImageLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -477,8 +483,10 @@
 				708002642632E22200EC446E /* SceneDelegate.swift in Sources */,
 				70FFE66126340D7A00745723 /* NetworkingManager.swift in Sources */,
 				70FFE6372633640000745723 /* C.swift in Sources */,
+				70FFE70F2635B24B00745723 /* ImageLoader.swift in Sources */,
 				70FFE6142633555000745723 /* MapViewController.swift in Sources */,
 				70FFE66A26340E2B00745723 /* User.swift in Sources */,
+				70FFE7072635B21600745723 /* ImageCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
