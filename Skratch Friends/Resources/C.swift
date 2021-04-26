@@ -22,5 +22,6 @@ struct C {
     
     struct Font {
         static let CircularStdBook = "CircularStd-Book"
+        static let CircularStdBlack = "CircularStd-Black"
     }
 }

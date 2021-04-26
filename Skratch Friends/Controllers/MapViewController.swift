@@ -12,7 +12,7 @@ import Combine
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
     
-    var numberIndicatorConstraints: [NSLayoutConstraint] = []
+    //MARK:- Views
     
     lazy var mapView: MGLMapView = {
         let mapView = MGLMapView(frame: view.bounds)
@@ -26,7 +26,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     
     lazy var segmentedControl: BetterSegmentedControl = {
         let segmented = BetterSegmentedControl(
-            frame: CGRect(x: 24.0, y: self.view.frame.height - 100.0, width: 138, height: 48.0),
+            frame: CGRect(x: 24.0, y: UIScreen.main.bounds.height - 90.0, width: 138, height: 48.0),
             segments: IconSegment.segments(withIcons: [C.Image.mapSegmentedControlImage,C.Image.listSegmentedControlImage],
                                            iconSize: CGSize(width: 24.0, height: 24.0),
                                            normalIconTintColor: C.Color.gray,
@@ -34,6 +34,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             options: [.cornerRadius(25.0),
                       .backgroundColor(.white),
                       .indicatorViewBackgroundColor(C.Color.gray)])
+        segmented.addTarget(self, action: #selector(navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         return segmented
     }()
     
@@ -61,38 +62,18 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         button.layer.cornerRadius = 24
         button.backgroundColor = C.Color.purple
         button.clipsToBounds = true
-        button.addTarget(self, action:#selector(handleRegister), for: .touchUpInside)
+        button.addTarget(self, action:#selector(confirmTapped), for: .touchUpInside)
         button.isHidden = true
         button.layer.opacity = 0.0
         button.setImage(C.Image.checkmark, for: .normal)
         return button
     }()
-    
-    @objc func handleRegister() {
-        print("tapped")
-        viewModel.numberOfUsers = Int(numberIndicator.text ?? "5") ?? 5
-        numberIndicator.text = "\(viewModel.numberOfUsers)"
-        viewModel.populateMap() { [weak self] (err) in
-            if let error = err {
-                print(error)
-            }
-            
-            print(self?.viewModel.users)
-            DispatchQueue.main.async {
-                guard let _ = self else {return}
-                self!.mapView.removeAnnotations(self!.mapView.annotations!)
-                self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
-            }
-        }
-        dismissKeyboard()
-    }
-    
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-    
+
     //MARK: - Properties
+    
+    private var numberIndicatorConstraints: [NSLayoutConstraint] = []
+    
+    private var friendListView: FriendListView?
     
     private var viewModel: MapViewModel!
     
@@ -117,34 +98,124 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         configureConstraints()
         
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardNotification(notification:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
+        
+        
         viewModel.populateMap() { [weak self] (err) in
             if let error = err {
                 print(error)
             }
             
-            print(self?.viewModel.users)
             DispatchQueue.main.async {
                 guard let _ = self else {return}
                 self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
+                self!.friendListView?.tableView.reloadData()
             }
         }
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
-        NotificationCenter.default.addObserver(self,
-              selector: #selector(self.keyboardNotification(notification:)),
-              name: UIResponder.keyboardWillChangeFrameNotification,
-              object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-      }
+    }
+    
+    //MARK:- General methodes
+    
+    private func configureUI() {
+        self.view.addSubview(mapView)
+        self.view.addSubview(segmentedControl)
+        self.view.addSubview(numberIndicator)
+        self.view.addSubview(confirmButton)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        segmentedControl.setupShadow()
+        numberIndicator.setupShadow()
+    }
+    
+    private func configureConstraints() {
+        numberIndicatorConstraints = [
+            numberIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            numberIndicator.widthAnchor.constraint(equalToConstant: 48),
+            numberIndicator.heightAnchor.constraint(equalToConstant: 48),
+            numberIndicator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -42)
+        ]
+        
+        NSLayoutConstraint.activate(numberIndicatorConstraints)
+        confirmButton.frame = numberIndicator.frame
+    }
+    
+    private func showFriendList() {
+        friendListView = FriendListView()
+        self.view.addSubview(friendListView!)
+        friendListView!.tableView.delegate = self
+        friendListView!.tableView.dataSource = self
+        
+        NSLayoutConstraint.activate([
+            friendListView!.topAnchor.constraint(equalTo: self.view.topAnchor),
+            friendListView!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            friendListView!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            friendListView!.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+        view.bringSubviewToFront(segmentedControl)
+        view.bringSubviewToFront(numberIndicator)
+        view.bringSubviewToFront(confirmButton)
+        
+    }
+    
+    private func hideFriendList() {
+        UIView.animate(withDuration: 0.5) {
+            self.friendListView?.alpha = 0.0
+        } completion: { [weak self] (_) in
+            self?.friendListView?.tableView.delegate = nil
+            self?.friendListView?.tableView.dataSource = nil
+            self?.friendListView?.removeFromSuperview()
+            self?.friendListView = nil
+        }
+        
+    }
+    
+    @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
+        if sender.index == 0 {
+            friendListView?.removeFromSuperview()
+        } else {
+            showFriendList()
+        }
+    }
+    
+    @objc func confirmTapped() {
+        print("tapped")
+        viewModel.numberOfUsers = Int(numberIndicator.text ?? "5") ?? 5
+        numberIndicator.text = "\(viewModel.numberOfUsers)"
+        viewModel.populateMap() { [weak self] (err) in
+            if let error = err {
+                print(error)
+            }
+            print(self?.viewModel.users)
+            DispatchQueue.main.async {
+                guard let _ = self else {return}
+                self?.friendListView?.tableView.reloadData()
+                self!.mapView.removeAnnotations(self!.mapView.annotations!)
+                self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
+            }
+        }
+        dismissKeyboard()
+    }
+}
+
+//MARK:- Handling keyboard
+
+extension MapViewController {
     
     @objc func keyboardNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
-
+        
         let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         let endFrameY = endFrame?.origin.y ?? 0
         let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
@@ -156,7 +227,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         CATransaction.setDisableActions(true)
         confirmButton.frame = CGRect(x: UIScreen.main.bounds.width - 72, y: UIScreen.main.bounds.height - (endFrame?.size.height ?? 0.0) - 144 , width: 48, height: 48)
         CATransaction.commit()
-       
+        
         if endFrameY >= UIScreen.main.bounds.size.height {
             numberIndicatorConstraints[0].constant = -24
             numberIndicatorConstraints[1].constant = 48
@@ -179,42 +250,29 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             confirmButton.isHidden = false
             
         }
-
+        
         UIView.animate(
-          withDuration: duration,
-          delay: TimeInterval(0),
-          options: animationCurve,
-          animations: { self.view.layoutIfNeeded() },
-          completion: nil)
-      }
-   
+            withDuration: duration,
+            delay: TimeInterval(0),
+            options: animationCurve,
+            animations: { self.view.layoutIfNeeded() },
+            completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+}
 
-    
-    private func configureUI() {
-        self.view.addSubview(mapView)
-        self.view.addSubview(segmentedControl)
-        self.view.addSubview(numberIndicator)
-        self.view.addSubview(confirmButton)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        segmentedControl.setupShadow()
-        numberIndicator.setupShadow()
-    }
-    
-    private func configureConstraints() {
-        
-        numberIndicatorConstraints = [
-            numberIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            numberIndicator.widthAnchor.constraint(equalToConstant: 48),
-            numberIndicator.heightAnchor.constraint(equalToConstant: 48),
-            numberIndicator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -42)
-        ]
-        
-        NSLayoutConstraint.activate(numberIndicatorConstraints)
-        confirmButton.frame = numberIndicator.frame
+//MARK: - Handling user location
+
+extension MapViewController {
+    func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
+        guard let _ = userLocation, !userLocated else {return}
+        mapView.setCenter(userLocation!.coordinate, zoomLevel: 3, animated: true)
+        userLocated = true
     }
     
     func mapView(_ mapView: MGLMapView, didChangeLocationManagerAuthorization manager: MGLLocationManager) {
@@ -223,7 +281,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         if accuracySetting == .reducedAccuracy {
             addPreciseButton()
         } else {
-            
             removePreciseButton()
         }
     }
@@ -257,17 +314,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     }
 }
 
-//MARK: - handling user location
-
-extension MapViewController {
-    func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
-        guard let _ = userLocation, !userLocated else {return}
-        mapView.setCenter(userLocation!.coordinate, zoomLevel: 3, animated: true)
-        userLocated = true
-    }
-}
-
-//MARK: - Annotation, MGLMapViewDelegate methods
+//MARK: - Annotation, MGLMapViewDelegate methodes
 
 extension MapViewController {
     
@@ -281,204 +328,34 @@ extension MapViewController {
         let reuseIdentifier = "\(annotation.coordinate.longitude)"
         
         // For better performance, always try to reuse existing annotations.
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? CustomAnnotationView
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? UserAnnotationView
         
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil, let customAnnotation = annotation as? UserAnnotationPoint {
-            annotationView = CustomAnnotationView()
+            annotationView = UserAnnotationView()
             annotationView!.annotation = customAnnotation
             annotationView!.bounds = CGRect(x: 0, y: 0, width: 100, height: 90)
             annotationView!.getImage()
             return annotationView
-            
         }
-        
         return annotationView
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
-    
 }
 
-//
-// MGLAnnotationView subclass
-class CustomAnnotationView: MGLAnnotationView {
-    
-    var imageView: UIImageView?
-    
-    var label: Annotationlabel?
-    
-    private var cancellable: AnyCancellable?
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Use CALayer’s corner radius to turn this view into a circle.
-        layer.borderWidth = 0
-        imageView?.layer.borderWidth = 3
-        imageView?.layer.borderColor = UIColor.white.cgColor
-        imageView?.center = CGPoint(x: 50, y: 60)
-        
-        label?.center = CGPoint(x: 50, y: 10)
-        
-        guard let _ = imageView, let _ = label else {return}
-        
-        //self.layer.shadowPath = UIBezierPath(roundedRect: self.imageView!.frame, cornerRadius: self.imageView!.bounds.width/2).cgPath
-        print("layoutet view with shadow ")
-        layer.shadowRadius = 8
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowOpacity = 0.5
-        layer.shadowColor = UIColor.black.cgColor
-        
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Animate the border width in/out, creating an iris effect.
-        let animation = CABasicAnimation(keyPath: "borderWidth")
-        animation.duration = 0.1
-        layer.add(animation, forKey: "borderWidth")
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        cancellable?.cancel()
-        imageView = nil
-        label = nil
-    }
-    
-    func getImage() {
-        guard let userAnnotation = annotation as? UserAnnotationPoint else {return}
-        
-        guard let url = URL(string: userAnnotation.user.picture.medium) else {
-            return
-        }
-        cancellable = ImageLoader.shared.loadImage(from: url).sink { [unowned self] image in
-            let imageView = UIImageView(image: image?.withAlignmentRectInsets(UIEdgeInsets(top: -3, left: -3, bottom: -3,
-                                                                                          right: -3)))
-            imageView.bounds = CGRect(x: 0, y: 0, width: 60, height: 60)
-            imageView.layer.cornerRadius = 30
-            imageView.layer.masksToBounds = true
-            imageView.contentMode = .scaleAspectFit
-            
-            self.backgroundColor = .clear
-            self.imageView = imageView
-           
-            self.addSubview(self.imageView!)
-            
-            let label = Annotationlabel(text: userAnnotation.user.name.first)
-            self.label = label
-            self.addSubview(label)
-        }
-    }
+//MARK:- Table view delegates & data source
 
-}
-
-extension UIView {
-    func setupShadow() {
-        let layer = self.layer
-        layer.masksToBounds = false
-        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: bounds.width/2).cgPath
-        layer.shadowRadius = 8
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowOpacity = 0.2
-        layer.shadowColor = UIColor.black.cgColor
-        
-    }
-}
-
-
-extension UIImageView {
-    func roundImageView(radius: CGFloat) {
-        self.layer.masksToBounds = true
-        layer.cornerRadius = radius
-        UIGraphicsBeginImageContext(self.bounds.size)
-        layer.render(in: UIGraphicsGetCurrentContext()!)
-        let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        self.image = roundedImage
-    }
-}
-
-
-class UserAnnotationPoint: MGLPointAnnotation {
-    private(set) var user: User!
-    
-    var imageName: String?
-    
-    init?(user: User) {
-        super.init()
-        self.user = user
-        
-        guard let coord = user.getCoordinates else {return nil}
-        print("Configure: \(user.name)")
-        self.coordinate = coord
+extension MapViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.users?.count ?? 0
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-class Annotationlabel: UILabel {
-    convenience init(text: String) {
-        self.init(frame: .zero)
-        self.text = text
-        self.backgroundColor = .white
-        self.textColor = C.Color.skratchNavy
-        self.textAlignment = .center
-        self.font = UIFont(name: C.Font.CircularStdBook, size: 12)
-        self.sizeToFit()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    override func sizeToFit() {
-        super.sizeToFit()
-        let borderWidth: CGFloat = 4.0
-        
-        self.frame = self.frame.insetBy(dx: -borderWidth * 2, dy: -borderWidth)
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = borderWidth
-        self.layer.shadowRadius = 5
-        self.layer.shadowOffset = .zero
-        self.layer.shadowOpacity = 1
-        
-        self.clipsToBounds = false
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layer.cornerRadius = self.bounds.height/2
-        self.layer.masksToBounds = true
-        self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.white.cgColor
-    }
-}
-
-
-class PaddingTextField: UITextField {
-    var applyPadding: Bool = false
-
-    private let padding = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-
-    override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        return applyPadding ? bounds.inset(by: padding) : bounds
-    }
-
-    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return applyPadding ? bounds.inset(by: padding) : bounds
-    }
-
-    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return applyPadding ? bounds.inset(by: padding) : bounds
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(UserTableViewCell.self)") as! UserTableViewCell
+        cell.configure(with: viewModel.users![indexPath.row])
+        return cell
     }
 }
