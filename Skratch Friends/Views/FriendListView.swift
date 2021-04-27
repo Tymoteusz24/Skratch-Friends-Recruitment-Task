@@ -21,23 +21,14 @@ class FriendListView: UIView {
         return label
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .white
-        tableView.separatorStyle = .none
-        tableView.contentInset.bottom = 70
-        tableView.allowsSelection = true
-        tableView.isUserInteractionEnabled = true
-        return tableView
-    }()
+    var tableView: UITableView?
     
     init() {
         super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
+        configureTableView()
         setupUI()
         configureConstraints()
-        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "\(UserTableViewCell.self)")
+        tableView?.register(UserTableViewCell.self, forCellReuseIdentifier: "\(UserTableViewCell.self)")
         self.isUserInteractionEnabled = true
     }
     
@@ -45,14 +36,28 @@ class FriendListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI() {
+    private func setupUI() {
         self.alpha = 0.0
         self.backgroundColor = .white
         self.addSubview(titleLabel)
-        self.addSubview(tableView)
+        guard let _ = tableView else {return}
+        self.addSubview(tableView!)
     }
     
-    func configureConstraints() {
+    private func configureTableView() {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .white
+        tableView.separatorStyle = .none
+        tableView.contentInset.bottom = 70
+        tableView.allowsSelection = true
+        tableView.isUserInteractionEnabled = true
+        
+        self.tableView = tableView
+    }
+    
+    private func configureConstraints() {
+        guard let tableView = tableView else {return}
         NSLayoutConstraint.activate([
             titleLabel.widthAnchor.constraint(equalToConstant: 168),
             titleLabel.heightAnchor.constraint(equalToConstant: 40),
@@ -72,12 +77,6 @@ class FriendListView: UIView {
         UIView.animate(withDuration: 0.5) {
             self.alpha = 1
         }
-        tableView.reloadData()
-    }
-    
-    override func removeFromSuperview() {
-        UIView.animate(withDuration: 0.5) {
-            self.alpha = 0.0
-        }
+        tableView?.reloadData()
     }
 }

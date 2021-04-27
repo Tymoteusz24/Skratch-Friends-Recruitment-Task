@@ -10,12 +10,28 @@ import Mapbox
 import Combine
 
 protocol AnnotationDelegate: AnyObject {
-    func didTap(for user: User)
+    func didTap(for: User, image: UIImage, position: CGRect)
 }
 
 class UserAnnotationView: MGLAnnotationView {
     
-    var imageView: UIImageView?
+    lazy var avatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+        
+        imageView.layer.borderWidth = 3
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.center = CGPoint(x: 50, y: 60)
+        
+        imageView.bounds = CGRect(x: 0, y: 0, width: 60, height: 60)
+        imageView.layer.cornerRadius = 30
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        
+        return imageView
+    }()
     
     var label: Annotationlabel?
     
@@ -23,23 +39,8 @@ class UserAnnotationView: MGLAnnotationView {
     
     private var cancellable: AnyCancellable?
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        self.imageView?.addGestureRecognizer(tap)
-        self.imageView?.isUserInteractionEnabled = true
-        // Use CALayer’s corner radius to turn this view into a circle.
-        layer.borderWidth = 0
-        imageView?.layer.borderWidth = 3
-        imageView?.layer.borderColor = UIColor.white.cgColor
-        imageView?.center = CGPoint(x: 50, y: 60)
-        
-        label?.center = CGPoint(x: 50, y: 10)
-        
-        guard let _ = imageView, let _ = label else {return}
-        
-        //self.layer.shadowPath = UIBezierPath(roundedRect: self.imageView!.frame, cornerRadius: self.imageView!.bounds.width/2).cgPath
-        print("layoutet view with shadow ")
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         layer.shadowRadius = 8
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowOpacity = 0.5
@@ -47,17 +48,36 @@ class UserAnnotationView: MGLAnnotationView {
         
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+       
+        // Use CALayer’s corner radius to turn this view into a circle.
+        
+        
+       
+        // user brezier path for better performance
+        //self.layer.shadowPath = UIBezierPath(roundedRect: self.imageView!.frame, cornerRadius: self.imageView!.bounds.width/2).cgPath
+       
+        
+    }
+    
     @objc func imageTapped() {
         print("image tapped")
        setSelected(true, animated: true)
         guard let annotation = annotation as? UserAnnotationPoint else { return }
-        delegate?.didTap(for: annotation.user)
+        guard let _ = avatarImageView.image, let _ = avatarImageView.globalFrame else {return}
+        delegate?.didTap(for: annotation.user, image: avatarImageView.image!, position: avatarImageView.globalFrame!)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellable?.cancel()
-        imageView = nil
+        avatarImageView.image = nil
         label = nil
     }
     
@@ -68,19 +88,13 @@ class UserAnnotationView: MGLAnnotationView {
             return
         }
         cancellable = ImageLoader.shared.loadImage(from: url).sink { [unowned self] image in
-            let imageView = UIImageView(image: image?.withAlignmentRectInsets(UIEdgeInsets(top: -3, left: -3, bottom: -3,
-                                                                                          right: -3)))
-            imageView.bounds = CGRect(x: 0, y: 0, width: 60, height: 60)
-            imageView.layer.cornerRadius = 30
-            imageView.layer.masksToBounds = true
-            imageView.contentMode = .scaleAspectFit
-            
-            self.backgroundColor = .clear
-            self.imageView = imageView
+
+            self.avatarImageView.image = image?.withAlignmentRectInsets(UIEdgeInsets(top: -3, left: -3, bottom: -3, right: -3))
            
-            self.addSubview(self.imageView!)
+            self.addSubview(self.avatarImageView)
             
             let label = Annotationlabel(text: userAnnotation.user.name.first)
+            label.center = CGPoint(x: 50, y: 10)
             self.label = label
             self.addSubview(label)
         }

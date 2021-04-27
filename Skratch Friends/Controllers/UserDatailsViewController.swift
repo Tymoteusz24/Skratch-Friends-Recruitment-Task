@@ -10,13 +10,8 @@ import Combine
 
 class UserDatailsViewController: UIViewController {
     
-    lazy var userImage: UIImageView = {
-        let userImageView = UIImageView()
-        userImageView.translatesAutoresizingMaskIntoConstraints = false
-        userImageView.layer.masksToBounds = false
-        userImageView.layer.cornerRadius = 36
-        userImageView.clipsToBounds = true
-        userImageView.contentMode = .scaleAspectFill
+    lazy var userImage: UserAvatarImageView = {
+        let userImageView = UserAvatarImageView(frame: .zero)
         
         NSLayoutConstraint.activate([
             userImageView.widthAnchor.constraint(equalToConstant: 72),
