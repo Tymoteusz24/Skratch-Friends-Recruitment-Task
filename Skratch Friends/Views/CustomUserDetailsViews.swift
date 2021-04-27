@@ -230,5 +230,35 @@ class SubtitleStackView: UIStackView {
     }
 }
 
+class UserAvatarImageView: UIImageView {
+    
+    init(image: UIImage) {
+        super.init(image: image)
+        configure()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    func configure() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = self.bounds.width/2
+        self.clipsToBounds = true
+        self.contentMode = .scaleAspectFill
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = self.bounds.width/2
+    }
+}
+
 
 

@@ -19,10 +19,14 @@ open class BottomSheetContainerViewController<BottomSheet: UIViewController> : U
         return view
     }()
     
+    let image: UIImage!
+    let position: CGRect!
+    
     // MARK: - Initialization
     public init(bottomSheetViewController: BottomSheet,
-                bottomSheetConfiguration: BottomSheetConfiguration) {
-        
+                bottomSheetConfiguration: BottomSheetConfiguration, image: UIImage, position: CGRect) {
+        self.image = image
+        self.position = position
         self.bottomSheetViewController = bottomSheetViewController
         self.configuration = bottomSheetConfiguration
         
@@ -37,15 +41,15 @@ open class BottomSheetContainerViewController<BottomSheet: UIViewController> : U
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showBottomSheet(animated: true)
+        showBottomSheet(animated: true, delay: 0.2)
+        newAnimation(with: image, position: position)
     }
     
     // MARK: - Bottom Sheet Actions
-    public func showBottomSheet(animated: Bool = true) {
+    public func showBottomSheet(animated: Bool = true, delay: TimeInterval = 0.0) {
         self.topConstraint.constant = -configuration.height
-      
         if animated {
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.2, delay: delay, animations: {
                 self.view.layoutIfNeeded()
                 self.backgroundView.alpha = 1.0
             }, completion: { _ in
@@ -206,27 +210,62 @@ open class BottomSheetContainerViewController<BottomSheet: UIViewController> : U
     }
 }
 
+//MARK:- Animating user avatar
 
-class MyCustomViewController: UIViewController {
+extension BottomSheetContainerViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = .white
-        self.view.layer.cornerRadius = 20
-        self.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    }
-}
-
-import UIKit
-
-final class WelcomeContainerViewController: BottomSheetContainerViewController
-<MyCustomViewController> {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do something
+    private var makeAnimationView: UIView {
+        let animationView = UIView()
+        animationView.frame = self.view.frame
+        return animationView
     }
     
+    private func newAnimation(with image: UIImage, position: CGRect) {
+        let animationView = makeAnimationView
+        guard let bottomVC = bottomSheetViewController as? UserDatailsViewController else {return}
+        
+        bottomVC.userImage.alpha = 0.0
+        
+        let userImage = UserAvatarImageView(image: image)
+        userImage.translatesAutoresizingMaskIntoConstraints = true
+        userImage.frame = position
+        userImage.layer.cornerRadius = position.height/2
+        animationView.addSubview(userImage)
+        
+        self.view.addSubview(animationView)
+        self.view.bringSubviewToFront(animationView)
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            bottomVC.userImage.alpha = 1.0
+            animationView.removeFromSuperview()
+        }
+        
+        let scaleAnimation = CABasicAnimation(keyPath:"transform.scale")
+        let scale:CGFloat = 72/position.height
+        scaleAnimation.fromValue = 1.0
+        scaleAnimation.toValue = scale
+        scaleAnimation.duration = 0.6
+        scaleAnimation.isRemovedOnCompletion = false
+        scaleAnimation.fillMode = .forwards
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        userImage.layer.add(scaleAnimation, forKey: "scale")
+        
+        let positionAnimation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.position))
+        let path = UIBezierPath()
+        let center = CGPoint(x: self.view.bounds.center.x, y: UIScreen.main.bounds.height - 473)
+        
+        path.move(to: userImage.center)
+        path.addCurve(to: center, controlPoint1: CGPoint(x: center.x/3, y: center.y/3), controlPoint2: CGPoint(x: center.x/3, y: center.y/4))
+        positionAnimation.path = path.cgPath
+        positionAnimation.repeatCount = 0
+        positionAnimation.duration = 0.6
+        positionAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        positionAnimation.isRemovedOnCompletion = false
+        positionAnimation.fillMode = .forwards
+        
+        userImage.layer.add(positionAnimation, forKey: "position")
+        CATransaction.commit()
+    }
 }

@@ -87,10 +87,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         configureConstraints()
         numberIndicator.delegate = self
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        tap.cancelsTouchesInView = false
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
@@ -105,7 +101,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
             DispatchQueue.main.async {
                 guard let _ = self else {return}
                 self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
-                self!.friendListView?.tableView.reloadData()
+                self!.friendListView?.tableView?.reloadData()
             }
         }
     }
@@ -147,16 +143,17 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
     
     private func showFriendList() {
         friendListView = FriendListView()
+        friendListView?.frame = self.view.frame
         self.view.addSubview(friendListView!)
-        friendListView!.tableView.delegate = self
-        friendListView!.tableView.dataSource = self
+        friendListView!.tableView?.delegate = self
+        friendListView!.tableView?.dataSource = self
         
-        NSLayoutConstraint.activate([
-            friendListView!.topAnchor.constraint(equalTo: self.view.topAnchor),
-            friendListView!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            friendListView!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            friendListView!.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            friendListView!.topAnchor.constraint(equalTo: self.view.topAnchor),
+//            friendListView!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+//            friendListView!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+//            friendListView!.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+//        ])
         view.bringSubviewToFront(segmentedControl)
         view.bringSubviewToFront(numberIndicator)
         view.bringSubviewToFront(confirmButton)
@@ -167,8 +164,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         UIView.animate(withDuration: 0.5) {
             self.friendListView?.alpha = 0.0
         } completion: { [weak self] (_) in
-            self?.friendListView?.tableView.delegate = nil
-            self?.friendListView?.tableView.dataSource = nil
+            self?.friendListView?.tableView?.delegate = nil
+            self?.friendListView?.tableView?.dataSource = nil
+            self?.friendListView?.tableView = nil
             self?.friendListView?.removeFromSuperview()
             self?.friendListView = nil
         }
@@ -177,7 +175,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
     
     @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
-            friendListView?.removeFromSuperview()
+            hideFriendList()
         } else {
             showFriendList()
         }
@@ -194,12 +192,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
             print(self?.viewModel.users)
             DispatchQueue.main.async {
                 guard let _ = self else {return}
-                self?.friendListView?.tableView.reloadData()
+                self!.friendListView?.tableView?.reloadData()
                 self!.mapView.removeAnnotations(self!.mapView.annotations!)
                 self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
             }
         }
-        dismissKeyboard()
+        view.endEditing(true)
     }
 }
 
@@ -219,6 +217,11 @@ extension MapViewController {
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)
+        CATransaction.setCompletionBlock {
+            self.numberIndicator.textAlignment = endFrameY >= UIScreen.main.bounds.size.height ?
+                .center:
+                .right
+        }
         confirmButton.frame = CGRect(x: UIScreen.main.bounds.width - 72, y: UIScreen.main.bounds.height - (endFrame?.size.height ?? 0.0) - 144 , width: 48, height: 48)
         CATransaction.commit()
         
@@ -227,7 +230,6 @@ extension MapViewController {
             numberIndicatorConstraints[1].constant = 48
             numberIndicatorConstraints[2].constant = 48
             numberIndicatorConstraints[3].constant = -42
-            numberIndicator.textAlignment = .center
             numberIndicator.layer.cornerRadius = 24
             confirmButton.layer.opacity = 0.0
             confirmButton.isHidden = true
@@ -239,7 +241,6 @@ extension MapViewController {
             numberIndicatorConstraints[2].constant = 72
             numberIndicatorConstraints[3].constant = -(endFrame?.size.height ?? 0.0)
             numberIndicator.applyPadding = true
-            numberIndicator.textAlignment = .right
             numberIndicator.layer.cornerRadius = 0
             confirmButton.layer.opacity = 1.0
             confirmButton.isHidden = false
@@ -253,12 +254,6 @@ extension MapViewController {
             animations: { self.view.layoutIfNeeded() },
             completion: nil)
     }
-    
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-    
 }
 
 //MARK: - Handling user location
@@ -327,9 +322,9 @@ extension MapViewController: AnnotationDelegate {
         
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil, let customAnnotation = annotation as? UserAnnotationPoint {
-            annotationView = UserAnnotationView()
+            annotationView = UserAnnotationView(frame: CGRect(x: 0, y: 0, width: 100, height: 90))
             annotationView!.annotation = customAnnotation
-            annotationView!.bounds = CGRect(x: 0, y: 0, width: 100, height: 90)
+            //annotationView!.bounds = CGRect(x: 0, y: 0, width: 100, height: 90)
             annotationView!.getImage()
             annotationView!.delegate = self
             return annotationView
@@ -337,8 +332,8 @@ extension MapViewController: AnnotationDelegate {
         return annotationView
     }
     
-    func didTap(for user: User) {
-        showUserDetailsVC(for: user)
+    func didTap(for user: User, image: UIImage, position: CGRect) {
+        showUserDetailsVC(for: user, image: image, position: position)
     }
 }
 
@@ -358,7 +353,10 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let users = viewModel.users else {return}
         
-        showUserDetailsVC(for: users[indexPath.row])
+        guard let cell = friendListView?.tableView?.cellForRow(at: indexPath) as? UserTableViewCell else {return}
+        
+        
+        showUserDetailsVC(for: users[indexPath.row],image: cell.userImage.image! ,position:  cell.userImage.globalFrame! )
     }
 }
 
@@ -381,6 +379,11 @@ extension MapViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder();
         return true;
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        numberIndicator.text = "\(viewModel.numberOfUsers)"
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

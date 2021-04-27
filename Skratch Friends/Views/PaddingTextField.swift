@@ -44,7 +44,8 @@ class PaddingTextField: UITextField {
         
         self.textAlignment = .center
         self.keyboardType = .numberPad
-        self.placeholder = "No. of users"
+        self.attributedPlaceholder = NSAttributedString(string: "No. of users",
+                                                        attributes: [NSAttributedString.Key.foregroundColor: C.Color.grayText])
     }
     
     func changeFontSize(shrink: Bool) {

@@ -85,7 +85,7 @@ extension String {
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.zzz"
         let output = String(dateFormatter.string(from: date!).suffix(4))
-        if output == "CEST" || output == "CES" {
+        if output == "CEST" || output == ".CET" {
             return "GMT"
         }
         return output
