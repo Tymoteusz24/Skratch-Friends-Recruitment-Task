@@ -27,6 +27,8 @@ class FriendListView: UIView {
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.contentInset.bottom = 70
+        tableView.allowsSelection = true
+        tableView.isUserInteractionEnabled = true
         return tableView
     }()
     
@@ -36,6 +38,7 @@ class FriendListView: UIView {
         setupUI()
         configureConstraints()
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "\(UserTableViewCell.self)")
+        self.isUserInteractionEnabled = true
     }
     
     required init?(coder: NSCoder) {
