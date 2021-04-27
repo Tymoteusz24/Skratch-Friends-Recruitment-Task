@@ -10,7 +10,7 @@ import Mapbox
 import BetterSegmentedControl
 import Combine
 
-class MapViewController: UIViewController, MGLMapViewDelegate {
+class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerForDetailVCProtocol {
     
     //MARK:- Views
     
@@ -29,7 +29,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             frame: CGRect(x: 24.0, y: UIScreen.main.bounds.height - 90.0, width: 138, height: 48.0),
             segments: IconSegment.segments(withIcons: [C.Image.mapSegmentedControlImage,C.Image.listSegmentedControlImage],
                                            iconSize: CGSize(width: 24.0, height: 24.0),
-                                           normalIconTintColor: C.Color.gray,
+                                           normalIconTintColor: C.Color.paleBlue,
                                            selectedIconTintColor: C.Color.purple),
             options: [.cornerRadius(25.0),
                       .backgroundColor(.white),
@@ -97,9 +97,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         configureUI()
         configureConstraints()
         
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
@@ -316,7 +316,7 @@ extension MapViewController {
 
 //MARK: - Annotation, MGLMapViewDelegate methodes
 
-extension MapViewController {
+extension MapViewController: AnnotationDelegate {
     
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         // This example is only concerned with point annotations.
@@ -336,13 +336,14 @@ extension MapViewController {
             annotationView!.annotation = customAnnotation
             annotationView!.bounds = CGRect(x: 0, y: 0, width: 100, height: 90)
             annotationView!.getImage()
+            annotationView!.delegate = self
             return annotationView
         }
         return annotationView
     }
     
-    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
+    func didTap(for user: User) {
+      showUserDetailsVC(for: user)
     }
 }
 
@@ -358,4 +359,11 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: viewModel.users![indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let users = viewModel.users else {return}
+        
+        showUserDetailsVC(for: users[indexPath.row])
+    }
 }
+

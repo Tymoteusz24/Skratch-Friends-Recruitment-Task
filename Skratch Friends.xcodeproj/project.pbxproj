@@ -12,6 +12,14 @@
 		702F147726368ADD001096A2 /* UserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F147626368ADD001096A2 /* UserAnnotationView.swift */; };
 		702F147C26368B7C001096A2 /* UserAnnotationPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F147B26368B7C001096A2 /* UserAnnotationPoint.swift */; };
 		702F148226368BB0001096A2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F148126368BB0001096A2 /* UIView+Extension.swift */; };
+		702F14DF2636E0AA001096A2 /* BottomSheetContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F14DE2636E0AA001096A2 /* BottomSheetContainerViewController.swift */; };
+		702F14E42636F064001096A2 /* UserDatailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F14E32636F064001096A2 /* UserDatailsViewController.swift */; };
+		702F14EC26373F73001096A2 /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 702F14EB26373F73001096A2 /* CircularStd-Medium.otf */; };
+		702F14F126374559001096A2 /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 702F14F026374559001096A2 /* CircularStd-Bold.otf */; };
+		702F14F6263750ED001096A2 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F14F5263750ED001096A2 /* UIViewController + Extension.swift */; };
+		702F14FB2637E643001096A2 /* Date+String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F14FA2637E643001096A2 /* Date+String+Extension.swift */; };
+		702F150026381483001096A2 /* CustomUserDetailsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F14FF26381483001096A2 /* CustomUserDetailsViews.swift */; };
+		702F1505263814B1001096A2 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F1504263814B1001096A2 /* UserViewModel.swift */; };
 		703D906226367AEF00E68B70 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703D906126367AEF00E68B70 /* UserTableViewCell.swift */; };
 		708002622632E22200EC446E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002612632E22200EC446E /* AppDelegate.swift */; };
 		708002642632E22200EC446E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708002632632E22200EC446E /* SceneDelegate.swift */; };
@@ -58,6 +66,14 @@
 		702F147626368ADD001096A2 /* UserAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotationView.swift; sourceTree = "<group>"; };
 		702F147B26368B7C001096A2 /* UserAnnotationPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotationPoint.swift; sourceTree = "<group>"; };
 		702F148126368BB0001096A2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		702F14DE2636E0AA001096A2 /* BottomSheetContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContainerViewController.swift; sourceTree = "<group>"; };
+		702F14E32636F064001096A2 /* UserDatailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatailsViewController.swift; sourceTree = "<group>"; };
+		702F14EB26373F73001096A2 /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Medium.otf"; sourceTree = "<group>"; };
+		702F14F026374559001096A2 /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
+		702F14F5263750ED001096A2 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		702F14FA2637E643001096A2 /* Date+String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String+Extension.swift"; sourceTree = "<group>"; };
+		702F14FF26381483001096A2 /* CustomUserDetailsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDetailsViews.swift; sourceTree = "<group>"; };
+		702F1504263814B1001096A2 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		703D906126367AEF00E68B70 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		7080025E2632E22200EC446E /* Skratch Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skratch Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		708002612632E22200EC446E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				702F148126368BB0001096A2 /* UIView+Extension.swift */,
+				702F14F5263750ED001096A2 /* UIViewController + Extension.swift */,
+				702F14FA2637E643001096A2 /* Date+String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -201,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				70FFE6132633555000745723 /* MapViewController.swift */,
+				702F14DE2636E0AA001096A2 /* BottomSheetContainerViewController.swift */,
+				702F14E32636F064001096A2 /* UserDatailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +249,7 @@
 				703D906126367AEF00E68B70 /* UserTableViewCell.swift */,
 				702F147126368A94001096A2 /* PaddingTextField.swift */,
 				702F147626368ADD001096A2 /* UserAnnotationView.swift */,
+				702F14FF26381483001096A2 /* CustomUserDetailsViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +269,7 @@
 			children = (
 				70FFE66926340E2B00745723 /* User.swift */,
 				702F147B26368B7C001096A2 /* UserAnnotationPoint.swift */,
+				702F1504263814B1001096A2 /* UserViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				70FFE70226345C5A00745723 /* CircularStd-Book.otf */,
+				702F14F026374559001096A2 /* CircularStd-Bold.otf */,
+				702F14EB26373F73001096A2 /* CircularStd-Medium.otf */,
 				70FFE71E2635FF0A00745723 /* CircularStd-Black.otf */,
 			);
 			path = fonts;
@@ -379,6 +403,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				702F14EC26373F73001096A2 /* CircularStd-Medium.otf in Resources */,
+				702F14F126374559001096A2 /* CircularStd-Bold.otf in Resources */,
 				70FFE72B2636005200745723 /* CircularStd-Book.otf in Resources */,
 				70FFE72C2636005200745723 /* CircularStd-Black.otf in Resources */,
 				7080026E2632E22400EC446E /* LaunchScreen.storyboard in Resources */,
@@ -513,17 +539,23 @@
 				70FFE61D2633559300745723 /* MapViewModel.swift in Sources */,
 				702F147226368A94001096A2 /* PaddingTextField.swift in Sources */,
 				702F147726368ADD001096A2 /* UserAnnotationView.swift in Sources */,
+				702F14DF2636E0AA001096A2 /* BottomSheetContainerViewController.swift in Sources */,
 				702F148226368BB0001096A2 /* UIView+Extension.swift in Sources */,
 				708002622632E22200EC446E /* AppDelegate.swift in Sources */,
 				702F147C26368B7C001096A2 /* UserAnnotationPoint.swift in Sources */,
 				703D906226367AEF00E68B70 /* UserTableViewCell.swift in Sources */,
 				708002642632E22200EC446E /* SceneDelegate.swift in Sources */,
 				70FFE66126340D7A00745723 /* NetworkingManager.swift in Sources */,
+				702F14FB2637E643001096A2 /* Date+String+Extension.swift in Sources */,
+				702F14F6263750ED001096A2 /* UIViewController + Extension.swift in Sources */,
 				70FFE71A2635F80D00745723 /* FriendListView.swift in Sources */,
+				702F150026381483001096A2 /* CustomUserDetailsViews.swift in Sources */,
+				702F14E42636F064001096A2 /* UserDatailsViewController.swift in Sources */,
 				70FFE6372633640000745723 /* C.swift in Sources */,
 				70FFE70F2635B24B00745723 /* ImageLoader.swift in Sources */,
 				70FFE6142633555000745723 /* MapViewController.swift in Sources */,
 				70FFE66A26340E2B00745723 /* User.swift in Sources */,
+				702F1505263814B1001096A2 /* UserViewModel.swift in Sources */,
 				70FFE7072635B21600745723 /* ImageCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,17 +9,25 @@ import UIKit
 import Mapbox
 import Combine
 
+protocol AnnotationDelegate: AnyObject {
+    func didTap(for user: User)
+}
+
 class UserAnnotationView: MGLAnnotationView {
     
     var imageView: UIImageView?
     
     var label: Annotationlabel?
     
+    weak var delegate: AnnotationDelegate?
+    
     private var cancellable: AnyCancellable?
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        self.imageView?.addGestureRecognizer(tap)
+        self.imageView?.isUserInteractionEnabled = true
         // Use CALayer’s corner radius to turn this view into a circle.
         layer.borderWidth = 0
         imageView?.layer.borderWidth = 3
@@ -39,13 +47,11 @@ class UserAnnotationView: MGLAnnotationView {
         
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Animate the border width in/out, creating an iris effect.
-        let animation = CABasicAnimation(keyPath: "borderWidth")
-        animation.duration = 0.1
-        layer.add(animation, forKey: "borderWidth")
+    @objc func imageTapped() {
+        print("image tapped")
+       setSelected(true, animated: true)
+        guard let annotation = annotation as? UserAnnotationPoint else { return }
+        delegate?.didTap(for: annotation.user)
     }
     
     override func prepareForReuse() {

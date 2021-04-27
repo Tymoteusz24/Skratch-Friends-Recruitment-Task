@@ -46,7 +46,7 @@ class UserTableViewCell: UITableViewCell {
     
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = C.Color.gray
+        label.textColor = C.Color.grayText
         label.font = UIFont(name: C.Font.CircularStdBook, size: 15)
         return label
     }()
@@ -54,7 +54,7 @@ class UserTableViewCell: UITableViewCell {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = C.Color.skratchNavy
-        label.font = UIFont(name: C.Font.CircularStdBook, size: 17)
+        label.font = UIFont(name: C.Font.CircularStdMedium, size: 17)
         return label
     }()
     
@@ -64,6 +64,8 @@ class UserTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        self.isUserInteractionEnabled = true
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,6 +74,7 @@ class UserTableViewCell: UITableViewCell {
     
     private func setupUI() {
         contentView.addSubview(mainStackView)
+        self.backgroundColor = .white
         mainStackView.addArrangedSubview(userImage)
         mainStackView.addArrangedSubview(textStackView)
         textStackView.addArrangedSubview(nameLabel)
