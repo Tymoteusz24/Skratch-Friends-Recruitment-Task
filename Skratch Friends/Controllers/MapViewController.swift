@@ -39,21 +39,10 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
     }()
     
     lazy var numberIndicator: PaddingTextField = {
-        var textField = PaddingTextField()
+        var textField = PaddingTextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 24
-        textField.layer.masksToBounds = true
-        textField.layer.backgroundColor = UIColor.white.cgColor
-        
-        textField.textColor = UIColor(red: 0.165, green: 0.18, blue: 0.263, alpha: 1)
-        
-        textField.font = UIFont(name: "CircularStd-Medium", size: 24)
-        
-        textField.textAlignment = .center
-        textField.keyboardType = .numberPad
-        
         textField.text = "\(viewModel.numberOfUsers)"
-        textField.placeholder = "No. of users"
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -68,7 +57,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         button.setImage(C.Image.checkmark, for: .normal)
         return button
     }()
-
+    
     //MARK: - Properties
     
     private var numberIndicatorConstraints: [NSLayoutConstraint] = []
@@ -96,6 +85,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         super.viewDidLoad()
         configureUI()
         configureConstraints()
+        numberIndicator.delegate = self
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -120,6 +110,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        segmentedControl.setupShadow()
+        numberIndicator.setupShadow()
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -135,8 +131,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        segmentedControl.setupShadow()
-        numberIndicator.setupShadow()
     }
     
     private func configureConstraints() {
@@ -238,6 +232,7 @@ extension MapViewController {
             confirmButton.layer.opacity = 0.0
             confirmButton.isHidden = true
             numberIndicator.applyPadding = false
+            numberIndicator.layer.shadowOpacity = 0.2
         } else {
             numberIndicatorConstraints[0].constant = 0
             numberIndicatorConstraints[1].constant = UIScreen.main.bounds.width
@@ -248,7 +243,7 @@ extension MapViewController {
             numberIndicator.layer.cornerRadius = 0
             confirmButton.layer.opacity = 1.0
             confirmButton.isHidden = false
-            
+            numberIndicator.layer.shadowOpacity = 0.0
         }
         
         UIView.animate(
@@ -343,7 +338,7 @@ extension MapViewController: AnnotationDelegate {
     }
     
     func didTap(for user: User) {
-      showUserDetailsVC(for: user)
+        showUserDetailsVC(for: user)
     }
 }
 
@@ -364,6 +359,53 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
         guard let users = viewModel.users else {return}
         
         showUserDetailsVC(for: users[indexPath.row])
+    }
+}
+
+//MARK:- TextField delegates
+
+extension MapViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true;
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+        confirmButton.isEnabled = false
+        mapView.isUserInteractionEnabled = false
+        friendListView?.isUserInteractionEnabled = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        mapView.isUserInteractionEnabled = true
+        friendListView?.isUserInteractionEnabled = true
+        guard let num = Int(textField.text ?? "")  else {
+            textField.text = "\(viewModel.numberOfUsers)"
+            return
+        }
+        let shrink = num > 999 ? true : false
+        numberIndicator.changeFontSize(shrink: shrink)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let num = Int(textField.text ?? ""), num > 0 else {
+            confirmButton.isEnabled = false
+            return}
+        confirmButton.isEnabled = true
     }
 }
 

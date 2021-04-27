@@ -229,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				70FFE61C2633559300745723 /* MapViewModel.swift */,
+				702F1504263814B1001096A2 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -269,7 +270,6 @@
 			children = (
 				70FFE66926340E2B00745723 /* User.swift */,
 				702F147B26368B7C001096A2 /* UserAnnotationPoint.swift */,
-				702F1504263814B1001096A2 /* UserViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -733,6 +733,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-Friends";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -753,6 +754,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "tymek.Skratch-Friends";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
