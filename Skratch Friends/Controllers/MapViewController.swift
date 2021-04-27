@@ -58,6 +58,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         return button
     }()
     
+    lazy var dimmView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        return view
+    }()
+    
     //MARK: - Properties
     
     private var numberIndicatorConstraints: [NSLayoutConstraint] = []
@@ -86,6 +92,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         configureUI()
         configureConstraints()
         numberIndicator.delegate = self
+        dimmView.frame = self.view.frame
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
@@ -147,13 +154,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         self.view.addSubview(friendListView!)
         friendListView!.tableView?.delegate = self
         friendListView!.tableView?.dataSource = self
-        
-//        NSLayoutConstraint.activate([
-//            friendListView!.topAnchor.constraint(equalTo: self.view.topAnchor),
-//            friendListView!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-//            friendListView!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-//            friendListView!.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-//        ])
+    
         view.bringSubviewToFront(segmentedControl)
         view.bringSubviewToFront(numberIndicator)
         view.bringSubviewToFront(confirmButton)
@@ -221,11 +222,15 @@ extension MapViewController {
             self.numberIndicator.textAlignment = endFrameY >= UIScreen.main.bounds.size.height ?
                 .center:
                 .right
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.dimmView.removeFromSuperview()
+            }
         }
         confirmButton.frame = CGRect(x: UIScreen.main.bounds.width - 72, y: UIScreen.main.bounds.height - (endFrame?.size.height ?? 0.0) - 144 , width: 48, height: 48)
         CATransaction.commit()
         
         if endFrameY >= UIScreen.main.bounds.size.height {
+            dimmView.alpha = 0.3
             numberIndicatorConstraints[0].constant = -24
             numberIndicatorConstraints[1].constant = 48
             numberIndicatorConstraints[2].constant = 48
@@ -236,6 +241,10 @@ extension MapViewController {
             numberIndicator.applyPadding = false
             numberIndicator.layer.shadowOpacity = 0.2
         } else {
+            view.addSubview(dimmView)
+            view.bringSubviewToFront(numberIndicator)
+            view.bringSubviewToFront(confirmButton)
+            dimmView.alpha = 1.0
             numberIndicatorConstraints[0].constant = 0
             numberIndicatorConstraints[1].constant = UIScreen.main.bounds.width
             numberIndicatorConstraints[2].constant = 72
