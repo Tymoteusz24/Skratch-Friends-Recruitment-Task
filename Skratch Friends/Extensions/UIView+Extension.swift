@@ -20,3 +20,20 @@ extension UIView {
         
     }
 }
+
+
+extension UIView {
+    
+    var globalPoint :CGPoint? {
+        return self.superview?.convert(self.frame.center, to: nil)
+    }
+
+    var globalFrame :CGRect? {
+        return self.superview?.convert(self.frame, to: nil)
+    }
+}
+extension CGRect {
+    var center : CGPoint {
+        return CGPoint(x:self.midX, y:self.midY)
+    }
+}
