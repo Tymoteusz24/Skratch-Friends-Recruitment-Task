@@ -367,7 +367,7 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = friendListView?.tableView?.cellForRow(at: indexPath) as? UserTableViewCell else {return}
         
         
-        showUserDetailsVC(for: users[indexPath.row],image: cell.userImage.image! ,position:  cell.userImage.globalFrame! )
+        showUserDetailsVC(for: users[indexPath.row],image: cell.userImage.image ,position:  cell.userImage.globalFrame! )
     }
 }
 
