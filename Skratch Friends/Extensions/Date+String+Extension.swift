@@ -16,7 +16,7 @@ extension Date {
         numberFormatter.numberStyle = .ordinal
 
         let day = numberFormatter.string(from: dateComponents as NSNumber)
-        return day!
+        return day ?? "none"
     }
     
     var dayMonthYearString: String {

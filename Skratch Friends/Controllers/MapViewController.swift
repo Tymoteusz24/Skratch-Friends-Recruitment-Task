@@ -343,7 +343,7 @@ extension MapViewController: AnnotationDelegate {
         return annotationView
     }
     
-    func didTap(for user: User, image: UIImage, position: CGRect) {
+    func didTap(for user: User, image: UIImage?, position: CGRect) {
         showUserDetailsVC(for: user, image: image, position: position)
     }
 }
@@ -367,7 +367,7 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = friendListView?.tableView?.cellForRow(at: indexPath) as? UserTableViewCell else {return}
         
         
-        showUserDetailsVC(for: users[indexPath.row],image: cell.userImage.image! ,position:  cell.userImage.globalFrame! )
+        showUserDetailsVC(for: users[indexPath.row],image: cell.userImage.image ,position:  cell.userImage.globalFrame! )
     }
 }
 
