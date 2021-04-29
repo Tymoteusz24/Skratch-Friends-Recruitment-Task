@@ -188,14 +188,16 @@ class MapViewController: UIViewController, MGLMapViewDelegate, ViewControllerFor
         numberIndicator.text = "\(viewModel.numberOfUsers)"
         viewModel.populateMap() { [weak self] (err) in
             if let error = err {
-                print(error)
-            }
-            print(self?.viewModel.users)
-            DispatchQueue.main.async {
-                guard let _ = self else {return}
-                self!.friendListView?.tableView?.reloadData()
-                self!.mapView.removeAnnotations(self!.mapView.annotations!)
-                self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
+                DispatchQueue.main.async {
+                    self?.presentAlert(withTitle: "Something went wrong", message: error.localizedDescription)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    guard let _ = self else {return}
+                    self!.friendListView?.tableView?.reloadData()
+                    self!.mapView.removeAnnotations(self!.mapView.annotations ?? [])
+                    self!.mapView.addAnnotations(self!.viewModel.annotationPoints)
+                }
             }
         }
         view.endEditing(true)
