@@ -19,12 +19,12 @@ open class BottomSheetContainerViewController<BottomSheet: UIViewController> : U
         return view
     }()
     
-    let image: UIImage!
+    let image: UIImage?
     let position: CGRect!
     
     // MARK: - Initialization
     public init(bottomSheetViewController: BottomSheet,
-                bottomSheetConfiguration: BottomSheetConfiguration, image: UIImage, position: CGRect) {
+                bottomSheetConfiguration: BottomSheetConfiguration, image: UIImage?, position: CGRect) {
         self.image = image
         self.position = position
         self.bottomSheetViewController = bottomSheetViewController
@@ -220,9 +220,10 @@ extension BottomSheetContainerViewController {
         return animationView
     }
     
-    private func newAnimation(with image: UIImage, position: CGRect) {
+    private func newAnimation(with image: UIImage?, position: CGRect) {
         let animationView = makeAnimationView
-        guard let bottomVC = bottomSheetViewController as? UserDatailsViewController else {return}
+        guard let bottomVC = bottomSheetViewController as? UserDatailsViewController,
+              let image = image else {return}
         
         bottomVC.userImage.alpha = 0.0
         
