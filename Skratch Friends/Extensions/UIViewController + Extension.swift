@@ -8,12 +8,12 @@
 import UIKit
 
 protocol ViewControllerForDetailVCProtocol: class {
-    func showUserDetailsVC(for user: User, image: UIImage, position: CGRect)
+    func showUserDetailsVC(for user: User, image: UIImage?, position: CGRect)
 }
 
 
 extension ViewControllerForDetailVCProtocol where Self: UIViewController {
-    func showUserDetailsVC(for user: User, image: UIImage, position: CGRect) {
+    func showUserDetailsVC(for user: User, image: UIImage?, position: CGRect) {
         let viewModel = UserViewModel(user: user)
         
         let vc = BottomSheetContainerViewController(
@@ -22,7 +22,8 @@ extension ViewControllerForDetailVCProtocol where Self: UIViewController {
                         height: 546,
                         initialOffset: 0
                     ),
-            image: image,
+            image: image
+            ,
             position: position
                 )
         vc.modalTransitionStyle = .coverVertical
@@ -30,4 +31,14 @@ extension ViewControllerForDetailVCProtocol where Self: UIViewController {
         
         self.present(vc, animated: false, completion: nil)
     }
+}
+
+extension UIViewController {
+
+  func presentAlert(withTitle title: String, message : String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let OKAction = UIAlertAction(title: "OK", style: .default)
+    alertController.addAction(OKAction)
+    self.present(alertController, animated: true, completion: nil)
+  }
 }
