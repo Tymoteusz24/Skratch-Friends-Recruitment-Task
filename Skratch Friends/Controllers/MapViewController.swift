@@ -343,7 +343,7 @@ extension MapViewController: AnnotationDelegate {
         return annotationView
     }
     
-    func didTap(for user: User, image: UIImage, position: CGRect) {
+    func didTap(for user: User, image: UIImage?, position: CGRect) {
         showUserDetailsVC(for: user, image: image, position: position)
     }
 }
