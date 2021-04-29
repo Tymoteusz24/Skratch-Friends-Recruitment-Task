@@ -106,7 +106,7 @@ class UserTableViewCell: UITableViewCell {
     private func loadImage(for user: User) -> AnyPublisher<UIImage?, Never> {
         return Just(user.picture.large)
         .flatMap({ poster -> AnyPublisher<UIImage?, Never> in
-            let url = URL(string: user.picture.large)!
+            guard let url = URL(string: user.picture.large)!
             return ImageLoader.shared.loadImage(from: url)
         })
         .eraseToAnyPublisher()

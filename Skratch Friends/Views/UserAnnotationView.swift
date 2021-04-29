@@ -10,7 +10,7 @@ import Mapbox
 import Combine
 
 protocol AnnotationDelegate: AnyObject {
-    func didTap(for: User, image: UIImage, position: CGRect)
+    func didTap(for: User, image: UIImage?, position: CGRect)
 }
 
 class UserAnnotationView: MGLAnnotationView {
@@ -71,7 +71,7 @@ class UserAnnotationView: MGLAnnotationView {
        setSelected(true, animated: true)
         guard let annotation = annotation as? UserAnnotationPoint else { return }
         guard let _ = avatarImageView.image, let _ = avatarImageView.globalFrame else {return}
-        delegate?.didTap(for: annotation.user, image: avatarImageView.image!, position: avatarImageView.globalFrame!)
+        delegate?.didTap(for: annotation.user, image: avatarImageView.image, position: avatarImageView.globalFrame!)
     }
     
     override func prepareForReuse() {
